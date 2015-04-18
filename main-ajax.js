@@ -9,10 +9,13 @@ $.ajax({
 })
 .done(function(res) {
   pics = res.data.images;
+  console.log(pics);
 })
 .fail(function(err) {
   console.log(err);
 });
+
+console.log(pics);
 
 function showFromImgur() {
   var rand = Math.floor(Math.random() * pics.length);
