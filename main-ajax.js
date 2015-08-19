@@ -1,4 +1,4 @@
-var pics;
+var pics = [];
 
 $.ajax({
   url: 'https://api.imgur.com/3/album/BeiVs.json',
@@ -10,20 +10,29 @@ $.ajax({
 .done(function(res) {
   pics = res.data.images;
   console.log(pics);
+
+  for (var i = 0; i < pics.length; i++) {
+    photoArray[i].path = pics[i].link;
+  }
+
+  showFromImgur();
 })
 .fail(function(err) {
   console.log(err);
 });
 
-console.log(pics);
-
 function showFromImgur() {
-  var rand = Math.floor(Math.random() * pics.length);
+  var rand = Math.floor(Math.random() * pics.length + 1);
   var displayPic = '<img src="' + pics[rand].link + '">';
   $('#picContainer').html(displayPic);
 }
 
-var button = document.getElementById('another');
-button.addEventListener('click', function() {
+$('#another').click(function() {
   showFromImgur();
+  console.log('I am sorry for being mean to Benton');
 });
+
+// pics is array of photos from imgur
+
+// photoArray is the existing array of photo objects used by tracker
+
